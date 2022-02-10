@@ -4,10 +4,10 @@ submitBtn.addEventListener("click", async function () {
   const email = emailField.value;
   const passwordFild = document.getElementById("password-field");
   const password = passwordFild.value;
-  if (email == "saddam" && password == "saddam") {
+  if (email == "saddam@gmail.com" && password == "saddam") {
     await Swal.fire({
       icon: "success",
-      title: "Login success full",
+      title: "Login successfully!",
       showConfirmButton: false,
       timer: 1500,
     });
