@@ -22,15 +22,24 @@ withdrawBtn.addEventListener("click", function () {
   const withdrawAmount = parseFloat(withdrawField.value);
   const withdrawBox = document.getElementById("withdraw");
   const withdraw = parseFloat(withdrawBox.innerText);
-  withdrawBox.innerText = withdraw + withdrawAmount;
-  withdrawField.value = "";
   const balanceBox = document.getElementById("balance");
   const balance = parseFloat(balanceBox.innerText);
-  balanceBox.innerText = balance - withdrawAmount;
-  Swal.fire({
-    icon: "success",
-    title: "Withdraw successful!",
-    showConfirmButton: false,
-    timer: 1500,
-  });
+  if (balance < withdrawAmount) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Insufficient balance!",
+    });
+  } else {
+    withdrawBox.innerText = withdraw + withdrawAmount;
+    withdrawField.value = "";
+
+    balanceBox.innerText = balance - withdrawAmount;
+    Swal.fire({
+      icon: "success",
+      title: "Withdraw successful!",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
 });
