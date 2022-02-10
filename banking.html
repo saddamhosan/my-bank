@@ -4,9 +4,55 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <title>Document</title>
   </head>
   <body>
-    <h1 class="text-5xl text-center mt-8">well come to saddam bank</h1>
+    <h1 class="text-5xl text-center my-8">well come to saddam bank</h1>
+    <section class="w-3/4 mx-auto">
+      <div class="grid grid-cols-3 gap-4 text-white">
+        <div class="bg-blue-500 text-center py-8 rounded">
+          <h2 class="text-3xl font-medium my-4">Deposit</h2>
+          <h1 class="text-4xl font-semibold">$<span>00</span></h1>
+        </div>
+        <div class="bg-red-500 text-center py-8 rounded">
+          <h2 class="text-3xl font-medium my-4">Withdraw</h2>
+          <h1 class="text-4xl font-semibold">$<span>00</span></h1>
+        </div>
+        <div class="bg-green-500 text-center py-8 rounded">
+          <h2 class="text-3xl font-medium my-4">Balance</h2>
+          <h1 class="text-4xl font-semibold">$<span>1240</span></h1>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="my-8 bg-blue-300 p-10">
+          <input
+            class="block h-10 w-5/6 my-4 border rounded"
+            type="number"
+            id="deposit-field"
+          />
+          <button
+            class="text-3xl text-white font-medium bg-blue-700 px-6 mt-4 py-2 rounded-xl"
+            id="deposit-btn"
+          >
+            Deposit
+          </button>
+        </div>
+        <div class="my-8 bg-orange-300 p-10">
+          <input
+            class="block h-10 w-5/6 my-4 border rounded"
+            type="number"
+            id="withdraw-field"
+          />
+          <button
+            class="text-3xl text-white font-medium bg-blue-700 mt-4 px-6 py-2 rounded-xl"
+            id="withdraw-btn"
+          >
+            Withdraw
+          </button>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
