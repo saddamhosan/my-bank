@@ -9,6 +9,12 @@ depositBtn.addEventListener("click", function () {
   const balanceBox = document.getElementById("balance");
   const balance = parseFloat(balanceBox.innerText);
   balanceBox.innerText = balance + depositAmount;
+  Swal.fire({
+    icon: "success",
+    title: "Deposit successful!",
+    showConfirmButton: false,
+    timer: 1500,
+  });
 });
 const withdrawBtn = document.getElementById("withdraw-btn");
 withdrawBtn.addEventListener("click", function () {
@@ -21,4 +27,10 @@ withdrawBtn.addEventListener("click", function () {
   const balanceBox = document.getElementById("balance");
   const balance = parseFloat(balanceBox.innerText);
   balanceBox.innerText = balance - withdrawAmount;
+  Swal.fire({
+    icon: "success",
+    title: "Withdraw successful!",
+    showConfirmButton: false,
+    timer: 1500,
+  });
 });
