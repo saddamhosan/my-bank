@@ -2,7 +2,6 @@ function inputFieldValue(inputId) {
   const inputField = document.getElementById(inputId);
   const amount = parseFloat(inputField.value);
   inputField.value = "";
-
   return amount;
 }
 function updateBox(boxId, amount) {
@@ -10,33 +9,34 @@ function updateBox(boxId, amount) {
   const dollar = parseFloat(box.innerText);
   box.innerText = dollar + amount;
 }
-function updateBalance(depositAmount) {
+function updateBalance(isIncrement, amount) {
   const balanceBox = document.getElementById("balance");
   const balance = parseFloat(balanceBox.innerText);
-  balanceBox.innerText = balance + depositAmount;
-}
-
-const depositBtn = document.getElementById("deposit-btn");
-depositBtn.addEventListener("click", function () {
-  // const depositField = document.getElementById("deposit-field");
-  // const depositAmount = parseFloat(depositField.value);
-  const depositAmount = inputFieldValue("deposit-field");
-  // const depositBox = document.getElementById("deposit");
-  // const deposit = parseFloat(depositBox.innerText);
-  // depositBox.innerText = deposit + depositAmount;
-  // depositField.value = "";
-  if (depositAmount > 0) {
-    updateBox("deposit", depositAmount);
-    // const balanceBox = document.getElementById("balance");
-    // const balance = parseFloat(balanceBox.innerText);
-    // balanceBox.innerText = balance + depositAmount;
-    updateBalance(depositAmount);
+  if (isIncrement == true) {
+    balanceBox.innerText = balance + amount;
     Swal.fire({
       icon: "success",
       title: "Deposit successful!",
       showConfirmButton: false,
       timer: 1500,
     });
+  } else {
+    balanceBox.innerText = balance - amount;
+    Swal.fire({
+      icon: "success",
+      title: "Withdraw successful!",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
+}
+
+const depositBtn = document.getElementById("deposit-btn");
+depositBtn.addEventListener("click", function () {
+  const depositAmount = inputFieldValue("deposit-field");
+  if (depositAmount > 0) {
+    updateBox("deposit", depositAmount);
+    updateBalance(true, depositAmount);
   } else {
     Swal.fire({
       title: "Error!",
@@ -48,14 +48,9 @@ depositBtn.addEventListener("click", function () {
 });
 const withdrawBtn = document.getElementById("withdraw-btn");
 withdrawBtn.addEventListener("click", function () {
-  // const withdrawField = document.getElementById("withdraw-field");
-  // const withdrawAmount = parseFloat(withdrawField.value);
   const withdrawAmount = inputFieldValue("withdraw-field");
-  // const withdrawBox = document.getElementById("withdraw");
-  // const withdraw = parseFloat(withdrawBox.innerText);
   if (withdrawAmount > 0) {
     const balanceBox = document.getElementById("balance");
-
     const balance = parseFloat(balanceBox.innerText);
     if (balance < withdrawAmount) {
       Swal.fire({
@@ -63,18 +58,9 @@ withdrawBtn.addEventListener("click", function () {
         title: "Oops...",
         text: "Insufficient balance!",
       });
-      // withdrawField.value = "";
     } else {
-      // withdrawBox.innerText = withdraw + withdrawAmount;
-      // withdrawField.value = "";
       updateBox("withdraw", withdrawAmount);
-      balanceBox.innerText = balance - withdrawAmount;
-      Swal.fire({
-        icon: "success",
-        title: "Withdraw successful!",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      updateBalance(false, withdrawAmount);
     }
   } else {
     Swal.fire({
